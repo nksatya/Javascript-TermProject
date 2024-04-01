@@ -12,11 +12,35 @@ This app allows a user to signup and login.-->
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Home Page</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href=''>
+    <link rel='stylesheet' media='screen' href='../css/home.css'>
 </head>
 
 <body>
-    <p>sales person Home page</p>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="details">
+            <% cars.forEach(car=> { %>
+            <div class="car">
+                <h2>Car Details</h2>
+                <img src="https://thumbs.dreamstime.com/z/new-toyota-camry-white-colour-luxury-business-limousine-new-toyota-camry-white-colour-luxury-business-limousine-cruising-200557709.jpg?ct=jpeg"
+                    alt="Car Image" style="max-width: 100%;">
+                <p><span><strong>Make:</strong> <%= car.make %></span> <span><strong>Variant:</strong> <%= car.variant %></span></p>
+                <p><strong>Model:</strong> <%= car.model %> <span><strong>Fuel Type:</strong> <%= car.gasType %></span></p>
+                <p><strong>Year:</strong> <%= car.year %> <span><strong>Engine Capacity:</strong> <%= car.engineCapacity %></span></p>
+                <p><strong>Color:</strong> <%= car.color %> <span><strong>Gear Type:</strong> <% if (car.isAutomatic == true) {%>Automatic<%} else {%>Manual<%} %></span></p>
+                <p><strong>Price:</strong> <%= car.price %></p>
+                <p></p>
+                <form action="<%=`/edit/${car.id}` %>" method="post"><button type="submit " class="edit-button">Edit</button></form>
+            </div>
+            <% }) %>
+        </div>
+    </div>
 </body>
 
 </html>

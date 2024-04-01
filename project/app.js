@@ -112,9 +112,17 @@ app.get('/home', (req, res) => {
 });
 
 //All Car Routes
+
+app.get('/create-car', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/html', 'create-car.html'));
+});
+
 app.post('/create-car', async (req, res) => {
     const user = req.session.user;
-    const { make, model, year, price, color, vin, variant, engineCapacity, gasType, isAutomatic } = req.body;
+    var { make, model, year, price, color, vin, variant, engineCapacity, gasType, isAutomatic } = req.body;
+    if (!isAutomatic) {
+        isAutomatic = false;
+    }
     console.log(req.body.gasType);
     try {
         if (user.role === 'admin') {
@@ -131,27 +139,51 @@ app.post('/create-car', async (req, res) => {
     }
 });
 
-app.get('/edit/:id', (req, res) => {
+app.post('/edit/:id', (req, res) => {
     Car.findById(req.params.id).then(cars => {
-        req.session.user;
         res.render('edit-car', { cars: cars });
     })
         .catch(err => {
             console.log(err);
-        });;
-
+        });
 });
 
-app.get('/create-car', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/html', 'create-car.html'));
-});
-
-app.post('/get-all-car', async (req, res) => {
-    const cars = await Car.find({});
-    if (cars && cars != undefined) {
-        res.render('admin-home')
+app.post('/update-car/:id', async (req, res) => {
+    const user = req.session.user;
+    var { make, model, year, price, color, vin, variant, engineCapacity, gasType, isAutomatic } = req.body;
+    if (!isAutomatic) {
+        isAutomatic = false;
+    }
+    try {
+        const result = await Car.updateOne({ _id: req.params.id }, { $set: { make, model, year, price, color, vin, variant, engineCapacity, gasType, isAutomatic } });
+        console.log(result);
+        res.redirect('/home'); // Send success response
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send('Car update failed!');
     }
 });
+
+
+app.post('/delete/:id', async (req, res) => {
+    const user = req.session.user;
+    try {
+        if (user.role === 'admin') {
+            const result = await Car.deleteOne({ _id: req.params.id });
+            console.log(result);
+            res.redirect('/home'); // Send success response
+        }
+        else {
+            res.status(403).send('Car Delete unauthorized!');
+        }
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send('Car Delete failed!');
+    }
+});
+
 
 // HTTP configuration
 const httpsOptions = {
