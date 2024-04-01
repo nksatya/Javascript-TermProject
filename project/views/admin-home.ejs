@@ -1,0 +1,49 @@
+<!--Project done by:
+    Satya Nilamegam Kumaran - C0886405
+    Mani Rathna Reddy Bellamkonda - C0887487
+    Karthik Saride - C0886429
+    Ravi Varman Ravichandran - C0885920
+This app allows a user to signup and login.-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home Details</title>
+    <link rel='stylesheet' media='screen' href='../css/admin-home.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="details">
+            <% cars.forEach(car=> { %>
+            <div class="car">
+                <h2>Car Details</h2>
+                <img src="https://thumbs.dreamstime.com/z/new-toyota-camry-white-colour-luxury-business-limousine-new-toyota-camry-white-colour-luxury-business-limousine-cruising-200557709.jpg?ct=jpeg"
+                    alt="Car Image" style="max-width: 100%;">
+                <p><span><strong>Make:</strong> <%= car.make %></span> <span><strong>Variant:</strong> <%= car.variant %></span></p>
+                <p><strong>Model:</strong> <%= car.model %> <span><strong>Fuel Type:</strong> <%= car.gasType %></span></p>
+                <p><strong>Year:</strong> <%= car.year %> <span><strong>Engine Capacity:</strong> <%= car.engineCapacity %></span></p>
+                <p><strong>Color:</strong> <%= car.color %> <span><strong>Gear Type:</strong> <% if (car.isAutomatic == true) {%>Automatic<%} else {%>Manual<%} %></span></p>
+                <p><strong>Price:</strong> <%= car.price %></p>
+                <p></p>
+                <a href="<%=`/edit/${car.id}` %>"><button class="edit-button">Edit</button></a> <a href="<%=`/delete/${car.id}` %>"><button class="delete-button">Delete</button></a>
+            </div>
+            <% }) %>
+            <a href="/create-car"><button><i class="fa fa-plus" style="font-size:48px;"></i><br> Add new Car</button></a>
+        </div>
+    </div>
+
+</body>
+
+</html>

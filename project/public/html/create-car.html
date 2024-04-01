@@ -1,0 +1,54 @@
+<!--Project done by:
+    Satya Nilamegam Kumaran - C0886405
+    Mani Rathna Reddy Bellamkonda - C0887487
+    Karthik Saride - C0886429
+    Ravi Varman Ravichandran - C0885920
+This app allows a user to signup and login.-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Create Car</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../css/create-car.css'>
+</head>
+<body>
+    <div>
+        <h2>Car form</h2>
+        <form action="/create-car" method="post">
+            <label for="make">Make:</label>
+            <input type="text" id="make" name="make" required><br><br>
+    
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model" required><br><br>
+    
+            <label for="year">Year:</label>
+            <input type="text" id="year" name="year" required><br><br>
+    
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" required><br><br>
+    
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" required><br><br>
+    
+            <label for="vin">VIN:</label>
+            <input type="number" id="vin" name="vin" required><br><br>
+    
+            <label for="variant">Variant:</label>
+            <input type="text" id="variant" name="variant" required><br><br>
+    
+            <label for="engineCapacity">Engine Capacity:</label>
+            <input type="text" id="engineCapacity" name="engineCapacity" required><br><br>
+    
+            <label for="gasType">Gas Type:</label>
+            <input type="text" id="gasType" name="gasType" required><br><br>
+    
+            <label for="isAutomatic">Automatic:</label>
+            <input type="checkbox" id="isAutomatic" name="isAutomatic" value="true"><br><br>
+    
+            <button class="submit-button" type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

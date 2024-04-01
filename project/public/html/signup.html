@@ -1,0 +1,35 @@
+<!--Project done by:
+    Satya Nilamegam Kumaran - C0886405
+    Mani Rathna Reddy Bellamkonda - C0887487
+    Karthik Saride - C0886429
+    Ravi Varman Ravichandran - C0885920
+This app allows a user to signup and login.-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Sign Up</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../css/signup.css'>
+</head>
+<body>
+    <div>
+        <h2>Sign up form</h2>
+        <form id="signup-form" action="/signup" method="post">
+            <label for="email">Email: </label>
+            <input type="email" name="email" id="email"><br>
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username" placeholder="Username"><br>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" placeholder="Enter password"><br>
+            <label for="role">Role:</label>
+            <select name="role">
+                <option value="admin">Admin</option>
+                <option value="salesperson">Sales Person</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
