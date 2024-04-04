@@ -37,7 +37,7 @@ app.use(session({ // Configure session management
 }));
 
 // Set the port number for the server to listen on
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4200;
 
 // Connect to MongoDB using Mongoose
 mongoose.connect('mongodb://localhost:27017/term-project', {
@@ -49,7 +49,12 @@ mongoose.connect('mongodb://localhost:27017/term-project', {
 
 // Application landing page (login) 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/html', 'index.html'));
+    if(req.session.user){
+        res.redirect('/home');
+    }
+    else{
+        res.sendFile(path.join(__dirname, 'public/html', 'index.html'));
+    }
 });
 
 // Signup route
@@ -184,6 +189,18 @@ app.post('/delete/:id', async (req, res) => {
     }
 });
 
+// Logout Route
+app.get('/logout', (req, res) => {
+    req.session.destroy(err => { // Destroy session
+        if (err) {
+            res.status(500).send('Logout failed!'); // Send error response if logout failed
+        } else {
+            res.redirect('/'); // Redirect to the home page after logout
+        }
+    });
+});
+
+app.post('/search')
 
 // HTTP configuration
 const httpsOptions = {
